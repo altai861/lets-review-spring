@@ -1,4 +1,9 @@
-# Authenticated endpoints
+# Authentication endpoints
+
+1. POST [/api/auth/register](#1. POST /api/auth/register)
+2. POST [/api/auth/login] (#2. POST /api/auth/login)
+3. POST [/api/auth/refresh] (#3. POST /api/auth/refresh)
+4. POST [/api/auth/logout] (#4. POST /api/auth/logout)
 
 ## 1. POST /api/auth/register
 
