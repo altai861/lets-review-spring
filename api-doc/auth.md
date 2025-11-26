@@ -5,6 +5,8 @@
 3. Refresh POST [/api/auth/refresh](#refresh)
 4. Logout POST [/api/auth/logout](#logout)
 
+---
+
 ## Register
 ## 1. POST /api/auth/register
 
@@ -27,7 +29,7 @@
     "userId": "123"
 }
 ```
-
+---
 ## Login
 ## 2. POST /api/auth/login
 
@@ -47,6 +49,7 @@
 }
 ```
 
+---
 ## Refresh
 ## 3. POST /api/auth/refresh
 
@@ -63,6 +66,7 @@
 }
 ```
 
+---
 ## Logout
 ## 4. POST /api/auth/logout
 
