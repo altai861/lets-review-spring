@@ -1,9 +1,9 @@
-#Authenticated endpoints
+# Authenticated endpoints
 
-1. POST /api/auth/register
+## 1. POST /api/auth/register
 
-Request
-'''
+### Request
+`
 {
     "email": "altai.g@grapecity.mn",
     "username": "altai.g",
@@ -12,59 +12,59 @@ Request
     "phoneNumber": "+97690292709",
     "password": "Aka123"
 }
-'''
+`
 
-Response
-'''
+### Response
+`
 {
     "message": "User registered successfully",
     "userId": "123"
 }
-'''
+`
 
-2. POST /api/auth/login
+## 2. POST /api/auth/login
 
-Request
-'''
+### Request
+`
 {
     "email": "altai.g@grapecity.mn",
     "password": "Aka123"
 }
-'''
+`
 
-Response
-'''
+### Response
+`
 {
     "message": "User logged in successfully",
     "accessToken": "eYajkshdkjahsdhas...."
 }
-'''
+`
 
-3. POST /api/auth/refresh
+## 3. POST /api/auth/refresh
 
-Request
-'''
+### Request
+`
 {}
-'''
+`
 
-Response
-'''
+### Response
+`
 {
     "message": "Refresh successful",
     "accessToken": "eYasdkjhjakjsdkjah....."
 }
-'''
+`
 
-4. POST /api/auth/logout
+## 4. POST /api/auth/logout
 
-Request
-'''
+### Request
+`
 {}
-'''
+`
 
-Response 
-'''
+### Response 
+`
 {
     "message": "Logged out successfully"
 }
-'''
+`
