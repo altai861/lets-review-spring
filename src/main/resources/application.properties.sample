@@ -6,3 +6,5 @@ jwt.secret=b13589433b4e0b3bee47a1471b1057fd0b8d9dd68a800b288773243526e34dd5
 jwt.access-token-expiration=86400000
 jwt.refresh-token-expiration=604800000
 cookie.secure=false
+spring.servlet.multipart.max-file-size=50MB
+spring.servlet.multipart.max-request-size=50MB

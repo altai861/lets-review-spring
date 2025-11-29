@@ -31,6 +31,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/countries/**").permitAll()
                         .requestMatchers("/api/provinces/**").permitAll()
                         .requestMatchers("/api/districts/**").permitAll()
+                        .requestMatchers("/api/files/upload").permitAll()
+                        .requestMatchers("/uploads/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
