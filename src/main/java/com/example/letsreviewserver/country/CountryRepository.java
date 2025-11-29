@@ -1,4 +1,4 @@
-package com.example.letsreviewserver.admin.country;
+package com.example.letsreviewserver.country;
 
 import com.example.letsreviewserver.model.Country;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,10 +1,10 @@
 package com.example.letsreviewserver.auth;
 
-import com.example.letsreviewserver.dto.LoginRequest;
-import com.example.letsreviewserver.dto.LoginResponse;
-import com.example.letsreviewserver.dto.RegisterRequest;
+import com.example.letsreviewserver.dto.auth.*;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,17 +19,12 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(
-            @RequestBody RegisterRequest registerRequest
+    public ResponseEntity<RegisterResponse> register(
+            @RequestBody RegisterRequest request
     ) {
-        String message;
-        try {
-            message = authService.register(registerRequest);
-            return ResponseEntity.ok(message);
-        } catch (RuntimeException e) {
-            message = e.getMessage();
-            return ResponseEntity.badRequest().body(message);
-        }
+        RegisterResponse response = authService.register(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
     }
 
     @PostMapping("/login")
@@ -37,14 +32,21 @@ public class AuthController {
             @RequestBody LoginRequest loginRequest,
             HttpServletResponse response
     ) {
-        LoginResponse loginResponse;
-        try {
-            loginResponse = authService.login(loginRequest, response);
-            return ResponseEntity.ok(loginResponse);
-        } catch (AuthenticationException e) {
-            loginResponse = new LoginResponse();
-            loginResponse.setAccessToken("Bad credentials");
-            return ResponseEntity.badRequest().body(loginResponse);
-        }
+        LoginResponse loginResponse = authService.login(loginRequest, response);
+        return ResponseEntity.ok(loginResponse);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<RefreshResponse> refresh(
+            HttpServletRequest request
+    ) {
+        RefreshResponse response = authService.refresh(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<LogoutResponse> logout(HttpServletResponse response) {
+        authService.logout(response);
+        return ResponseEntity.ok(new LogoutResponse("Logged out successfully"));
     }
 }
