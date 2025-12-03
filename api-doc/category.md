@@ -5,7 +5,9 @@
 3. Get One Category GET [/api/categories/{id}](#get-one-category) -- DONE
 4. Update Category PUT [/api/categories/{id}](#update-category) -- DONE
 5. Delete Category DELETE [/api/categories/{id}](#delete-country) -- DONE
-
+6. Connect Metric to Category POST [/api/categories/{categoryId}/metrics/{metricId}](#add-metric-to-category) -- DONE
+7. Get all metrics of a category GET [/api/categories/{categoryId}/metrics](#get-category-metrics) -- DONE
+8. Delete Link DELETE [/api/categories/{categoryId}/metrics/{metricId}](#delete-metric) -- DONE
 ---
 
 ## Get Categories
@@ -116,5 +118,67 @@
 ```
 {
     "message": "Category deleted successfully"
+}
+```
+
+
+## Add Metric to Category
+## 6. POST /api/categories/{categoryId}/metrics/{metricId}
+
+### Request
+```
+{}
+```
+
+### Response
+```
+{
+    "message": "Link added",
+    "categoryId: 2,
+    metricId: 2
+}
+```
+---
+
+## Get category metrics
+## 7. GET /api/categories/{categoryId}/metrics
+
+### Request
+```
+{}
+```
+
+### Response
+```
+[
+    {
+        "categoryId": 2,
+        "metricId": 2,
+        "metricName": "Cleanliness",
+        "metricDescription": "How clean is the environment",
+        "minValue": 0,
+        "maxValue": 5,
+        "createdDatetime": "2025-11-29-10-02",
+        "createdBy": 0
+    }, 
+    { ... }
+]
+```
+
+--- 
+
+## Delete metric 
+## 8. DELETE /api/categories/{categoryId}/metrics/{metricId}
+
+
+### Request
+```
+{}
+```
+
+### Response
+```
+{
+    "message": "Metric removed from category"
 }
 ```

@@ -31,6 +31,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/countries/**").permitAll()
                         .requestMatchers("/api/provinces/**").permitAll()
                         .requestMatchers("/api/districts/**").permitAll()
+                        .requestMatchers("/api/places/**").permitAll()
                         .requestMatchers("/api/categories/**").permitAll()
                         .requestMatchers("/api/metrics/**").permitAll()
                         .requestMatchers("/api/files/upload").permitAll()
