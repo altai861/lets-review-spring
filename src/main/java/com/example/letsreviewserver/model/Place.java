@@ -6,7 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -40,6 +42,9 @@ public class Place {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "districtId", nullable = false)
     private District district;
+
+    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PlaceMedia> mediaLinks = new ArrayList<>();
 
     @Column(nullable = false)
     private Date createdDatetime;

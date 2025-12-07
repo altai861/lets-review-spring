@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -135,8 +137,53 @@ public class PlaceService {
         existingPlace.setModifiedDatetime(new Date());
         existingPlace.setModifiedBy(userId);
 
+        updatePlaceMedia(existingPlace, request.getMediaIds());
+
         Place updatedPlace = placeRepository.save(existingPlace);
         return convertToDto(updatedPlace);
+    }
+
+    @Transactional
+    protected void updatePlaceMedia(Place place, List<Long> newMediaIds) {
+
+        if (newMediaIds == null) {
+            newMediaIds = List.of();
+        }
+
+        List<PlaceMedia> existingMediaLinks = placeMediaRepository.findByPlace_PlaceId(place.getPlaceId());
+
+        Set<Long> existingIds = existingMediaLinks.stream()
+                .map(pm -> pm.getMedia().getMediaId())
+                .collect(Collectors.toSet());
+
+        Set<Long> updatedIds = new HashSet<>(newMediaIds);
+
+        Set<Long> toAdd = updatedIds.stream()
+                .filter(id -> !existingIds.contains(id))
+                .collect(Collectors.toSet());
+
+        Set<Long> toRemove = existingIds.stream()
+                .filter(id -> !updatedIds.contains(id))
+                .collect(Collectors.toSet());
+
+        for (Long mediaId : toAdd) {
+            Media media = mediaRepository.findById(mediaId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Media not found with ID: " + mediaId));
+
+            PlaceMedia pm = PlaceMedia.builder()
+                    .id(new PlaceMediaId(place.getPlaceId(), mediaId))
+                    .place(place)
+                    .media(media)
+                    .createdDatetime(new Date())
+                    .build();
+
+            placeMediaRepository.save(pm);
+        }
+
+        // --- REMOVE OLD MEDIA ---
+        if (!toRemove.isEmpty()) {
+            placeMediaRepository.deleteByPlace_PlaceIdAndMedia_MediaIdIn(place.getPlaceId(), toRemove);
+        }
     }
 
     @Transactional
@@ -144,7 +191,6 @@ public class PlaceService {
         if (!placeRepository.existsById(placeId)) {
             throw new ResourceNotFoundException("Place not found with ID: " + placeId);
         }
-        // NOTE: Ensure cascading rules are properly handled for related tables (like Business)
         placeRepository.deleteById(placeId);
     }
 
