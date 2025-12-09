@@ -10,7 +10,6 @@ import com.example.letsreviewserver.model.User;
 import com.example.letsreviewserver.model.business.Business;
 import com.example.letsreviewserver.model.service.Service;
 import com.example.letsreviewserver.model.service.ServiceMedia;
-import com.example.letsreviewserver.place.PlaceRepository;
 import com.example.letsreviewserver.upload.MediaRepository;
 import com.example.letsreviewserver.user.UserRepository;
 import com.example.letsreviewserver.util.exception.ResourceNotFoundException;

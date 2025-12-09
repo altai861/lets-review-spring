@@ -5,11 +5,11 @@ INSERT INTO place (
     address,
     latitude,
     longitude,
-    floorNumber,
+    floor_number,
     created_datetime,
     created_by,
     modified_datetime,
-    modified_by
+    modified_by,
     district_id
 ) VALUES (
     1,
@@ -24,8 +24,7 @@ INSERT INTO place (
     NOW(),
     0,
     3
-)
-
+);
 
 INSERT INTO place (
     place_id,
@@ -34,11 +33,11 @@ INSERT INTO place (
     address,
     latitude,
     longitude,
-    floorNumber,
+    floor_number,
     created_datetime,
     created_by,
     modified_datetime,
-    modified_by
+    modified_by,
     district_id
 ) VALUES (
     2,
@@ -46,7 +45,7 @@ INSERT INTO place (
     'Монгол улсын анхны их дэлгүүр',
     'CHD - 3 khoroo, Ulaanbaatar 15172',
     47.91703280186287, 
-    106.9063869938821
+    106.9063869938821,
     10,
     NOW(),
     0,
@@ -54,7 +53,6 @@ INSERT INTO place (
     0,
     7
 );
-
 
 INSERT INTO media (
     media_id, 
@@ -84,10 +82,9 @@ INSERT INTO media (
     'place'
 );
 
-
 INSERT INTO place_media (
     place_place_id,
-    media_media_id
+    media_media_id,
     created_datetime
 ) VALUES (
     1,
@@ -97,13 +94,10 @@ INSERT INTO place_media (
 
 INSERT INTO place_media (
     place_place_id,
-    media_media_id
+    media_media_id,
     created_datetime
 ) VALUES (
     2,
     2,
     NOW()
 );
-
-
-

@@ -103,12 +103,180 @@ INSERT INTO business (
     '', 
     0, 
     47.91276134627459, 
-    106.93708257043161
+    106.93708257043161,
     0, 
     NOW(), 
     'UNVERIFIED', 
     '08:00-22:00', 
     1, 
-    0, 
-    0
+    null, 
+    null
 );
+
+INSERT INTO business (
+    business_id, 
+    address, 
+    business_name, 
+    created_by, 
+    created_datetime, 
+    email, 
+    floor_number, 
+    latitude, 
+    longitude, 
+    modified_by, 
+    modified_datetime, 
+    status, 
+    working_hours, 
+    district_id, 
+    place_id, 
+    user_id
+) VALUES (
+    2, 
+    'Olympic Street, 4th floor, Shangri-La Mall, Ulaanbaatar 14241', 
+    'Mongolians Restaurant', 
+    0, 
+    NOW(), 
+    '', 
+    0, 
+    47.91363346964478, 
+    106.92151034232788,
+    0, 
+    NOW(), 
+    'UNVERIFIED', 
+    '08:00-22:00', 
+    6, 
+    null, 
+    null
+);
+
+
+INSERT INTO business (
+    business_id, 
+    address, 
+    business_name, 
+    created_by, 
+    created_datetime, 
+    email, 
+    floor_number, 
+    latitude, 
+    longitude, 
+    modified_by, 
+    modified_datetime, 
+    status, 
+    working_hours, 
+    district_id, 
+    place_id, 
+    user_id
+) VALUES (
+    3, 
+    'WWCG+3H8, SBD - 8 khoroo, Ulaanbaatar 14191', 
+    'Өгөөж цайны газар', 
+    0, 
+    NOW(), 
+    '', 
+    0, 
+    47.92049865779869, 
+    106.92654931276097,
+    0, 
+    NOW(), 
+    'UNVERIFIED', 
+    '08:00-22:00', 
+    6, 
+    null, 
+    null
+);
+
+
+INSERT INTO business (
+    business_id, 
+    address, 
+    business_name, 
+    created_by, 
+    created_datetime, 
+    email, 
+    floor_number, 
+    latitude, 
+    longitude, 
+    modified_by, 
+    modified_datetime, 
+    status, 
+    working_hours, 
+    district_id, 
+    place_id, 
+    user_id
+) VALUES (
+    4, 
+    'WW94+3J4 Баруун Сэлбийн гудамж, CHD - 3 khoroo, Ulaanbaatar 15172', 
+    'PRADA CHICKEN', 
+    0, 
+    NOW(), 
+    '', 
+    0, 
+    47.91851229576952, 
+    106.90679736806578,
+    0, 
+    NOW(), 
+    'UNVERIFIED', 
+    '08:00-22:00', 
+    5, 
+    null, 
+    null
+);
+
+
+INSERT INTO business (
+    business_id, 
+    address, 
+    business_name, 
+    created_by, 
+    created_datetime, 
+    email, 
+    floor_number, 
+    latitude, 
+    longitude, 
+    modified_by, 
+    modified_datetime, 
+    status, 
+    working_hours, 
+    district_id, 
+    place_id, 
+    user_id
+) VALUES (
+    5, 
+    'Tokyo St Palazzo center, Suit 8, Ulaanbaatar 14200', 
+    'Torres restaurant', 
+    0, 
+    NOW(), 
+    '', 
+    0, 
+    47.925452095054894, 
+    106.93577801308837,
+    0, 
+    NOW(), 
+    'UNVERIFIED', 
+    '08:00-22:00', 
+    1, 
+    null, 
+    null
+);
+
+
+INSERT INTO business_media
+(id, created_by, created_datetime, business_id, media_id)
+VALUES(1, 0, NOW(), 1, 11);
+
+INSERT INTO business_media
+(id, created_by, created_datetime, business_id, media_id)
+VALUES(2, 0, NOW(), 2, 12);
+
+INSERT INTO business_media
+(id, created_by, created_datetime, business_id, media_id)
+VALUES(3, 0, NOW(), 3, 13);
+
+INSERT INTO business_media
+(id, created_by, created_datetime, business_id, media_id)
+VALUES(4, 0, NOW(), 4, 14);
+
+INSERT INTO business_media
+(id, created_by, created_datetime, business_id, media_id)
+VALUES(5, 0, NOW(), 5, 15);
