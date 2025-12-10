@@ -36,23 +36,24 @@ public class JwtUtil {
     }
 
     public String generateAccessToken(String username) {
-        return generateToken(username, accessTokenExpirationMs);
+        return generateToken(username, accessTokenExpirationMs, false);
     }
 
     public String generateRefreshToken(String username) {
-        return generateToken(username, refreshTokenExpirationMs);
+        return generateToken(username, refreshTokenExpirationMs, true);
     }
 
-    private String generateToken(String username, Long expirationMs) {
+    private String generateToken(String username, Long expirationMs, Boolean refreshToken) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expirationMs);
 
         return Jwts.builder()
-                .setSubject(username) // The user's identifier (e.g., username or ID)
+                .setSubject(username)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(getSigningKey(), SignatureAlgorithm.HS256) // Sign the JWT using the secret key
-                .compact(); // Build and serialize the JWT to a compact, URL-safe string
+                .claim("type", refreshToken ? "refresh" : "access") // Add token type claim
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+                .compact();
     }
 
     public String extractUsername(String token) {
@@ -80,7 +81,26 @@ public class JwtUtil {
         } catch (IllegalArgumentException e) {
             System.err.println("JWT claims string is empty: " + e.getMessage());
         }
-
         return false;
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(getSigningKey())  // always use your SecretKey
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    public boolean isRefreshTokenValid(String token) {
+        try {
+            Claims claims = extractAllClaims(token);
+            // Check expiration
+            if (claims.getExpiration().before(new Date())) return false;
+            // Check token type
+            return "refresh".equals(claims.get("type", String.class));
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.letsreviewserver.dto;
+package com.example.letsreviewserver.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginResponse {
+    private String message;
     private String accessToken;
 }

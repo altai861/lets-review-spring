@@ -1,14 +1,13 @@
-package com.example.letsreviewserver.dto;
+package com.example.letsreviewserver.dto.auth;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterResponse {
+public class RefreshResponse {
     private String message;
+    private String accessToken;
 }

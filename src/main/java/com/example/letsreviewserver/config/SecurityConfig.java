@@ -1,19 +1,13 @@
 package com.example.letsreviewserver.config;
 
-import com.example.letsreviewserver.auth.AuthService;
 import com.example.letsreviewserver.util.JwtAuthFilter;
-import com.example.letsreviewserver.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -26,12 +20,27 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) {
+//        .hasAnyRole("USER", "ADMIN")
+//        .hasRole("ADMIN")
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/", "/api/auth/register", "/api/auth/login", "/api/auth/refresh-token").permitAll()
-                        .requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/", "/api/auth/register", "/api/auth/login").permitAll()
+                        .requestMatchers("/api/user/**").permitAll()
+                        .requestMatchers("/api/admin/**").permitAll()
+                        .requestMatchers("/api/countries/**").permitAll()
+                        .requestMatchers("/api/provinces/**").permitAll()
+                        .requestMatchers("/api/districts/**").permitAll()
+                        .requestMatchers("/api/places/**").permitAll()
+                        .requestMatchers("/api/categories/**").permitAll()
+                        .requestMatchers("/api/metrics/**").permitAll()
+                        .requestMatchers("/api/businesses/**").permitAll()
+                        .requestMatchers("/api/services/**").permitAll()
+
+                        .requestMatchers("/api/home/locations/**").permitAll()
+
+                        .requestMatchers("/api/files/upload").permitAll()
+                        .requestMatchers("/uploads/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
