@@ -2,9 +2,9 @@ name: Java 21 Spring Boot CI Build
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master", "develop" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
